@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Domain.Entities
 {
-    internal class Servico
+    public class Servico
     {
-        public int Id { get; private set; }
+        public int ServicoId { get; private set; }
         public int PrestadorId { get; private set; }
         public string Nome { get; private set; }
         public decimal Preco { get; private set; }

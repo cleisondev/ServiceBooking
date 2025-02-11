@@ -1,4 +1,4 @@
-﻿using BarberBooking.Domain.Entities;
+﻿using ServiceBooking.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Domain.Entities
 {
-    internal class Agendamento
+    public class Agendamento
     {
-        public int Id { get; private set; }
-        public int ClienteId { get; private set; }
-        public Usuario Cliente { get; private set; }
+        public int AgendamentoId { get; private set; }
+        public int UsuarioId { get; private set; }
+        public Usuario Usuario { get; private set; }
         public int ServicoId { get; private set; }
         public Servico Servico { get; private set; }
         public DateTime DataHora { get; private set; }
@@ -21,7 +21,7 @@ namespace ServiceBooking.Domain.Entities
         {
             if (dataHora < DateTime.Now) throw new ArgumentException("A data do agendamento não pode ser no passado");
 
-            ClienteId = clienteId;
+            UsuarioId = clienteId;
             ServicoId = servicoId;
             DataHora = dataHora;
             Status = StatusAgendamento.Pendente;

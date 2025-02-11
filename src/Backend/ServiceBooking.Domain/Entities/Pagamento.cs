@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Domain.Entities
 {
-    internal class Pagamento
+    public class Pagamento
     {
-        public int Id { get; set; }
+        public int PagamentoId { get; set; }
         public int AgendamentoId { get; set; }
         public Agendamento Agendamento { get; set; } = null!;
 
