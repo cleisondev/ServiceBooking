@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BarberBooking.Domain.Entities
+namespace ServiceBooking.Domain.Entities
 {
     public class Usuario
     {
-        public int Id { get; private set; }
+        public int UsuarioId { get; private set; }
         public string Nome { get; private set; } = string.Empty;
         public string Email { get; private set; } = string.Empty;
         public string SenhaHash { get; private set; } = string.Empty;

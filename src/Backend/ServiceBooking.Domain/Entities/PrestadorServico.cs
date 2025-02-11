@@ -1,4 +1,4 @@
-﻿using BarberBooking.Domain.Entities;
+﻿using ServiceBooking.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Domain.Entities
 {
-    internal class PrestadorServico
+    public class PrestadorServico
     {
-        public int Id { get; private set; }
+        public int PrestadorServicoId { get; private set; }
         public int UsuarioId { get; private set; }
         public Usuario Usuario { get; private set; }
         public string Categoria { get; private set; }
