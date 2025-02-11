@@ -9,17 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{6490
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{0034B652-A420-4729-8851-A88BD1CBB406}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberBooking.API", "src\Backend\BarberBooking.API\BarberBooking.API.csproj", "{8D737477-5EF2-4F2D-AA40-388ABAB021B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBooking.API", "src\Backend\BarberBooking.API\ServiceBooking.API.csproj", "{8D737477-5EF2-4F2D-AA40-388ABAB021B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberBooking.Application", "src\Backend\BarberBooking.Application\BarberBooking.Application.csproj", "{D4F0E9BC-54B8-43A7-BBE2-F6D53AB4C202}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBooking.Application", "src\Backend\BarberBooking.Application\ServiceBooking.Application.csproj", "{D4F0E9BC-54B8-43A7-BBE2-F6D53AB4C202}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberBooking.Domain", "src\Backend\BarberBooking.Domain\BarberBooking.Domain.csproj", "{569850C5-EB96-493B-9D81-A0BCFB690978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBooking.Domain", "src\Backend\BarberBooking.Domain\ServiceBooking.Domain.csproj", "{569850C5-EB96-493B-9D81-A0BCFB690978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberBooking.Infrastructure", "src\Backend\BarberBooking.Infrastructure\BarberBooking.Infrastructure.csproj", "{2BC98243-082A-4DB7-8249-9006FB5EEAA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBooking.Infrastructure", "src\Backend\BarberBooking.Infrastructure\ServiceBooking.Infrastructure.csproj", "{2BC98243-082A-4DB7-8249-9006FB5EEAA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberBooking.Exceptions", "src\Shared\BarberBooking.Exceptions\BarberBooking.Exceptions.csproj", "{7F8F81A9-6DA5-4975-9329-283501FD9BD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBooking.Exceptions", "src\Shared\BarberBooking.Exceptions\ServiceBooking.Exceptions.csproj", "{7F8F81A9-6DA5-4975-9329-283501FD9BD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberBooking.Communication", "src\Shared\BarberBooking.Communication\BarberBooking.Communication.csproj", "{BC0197A6-FDF2-420F-97AA-7F9E31E02FEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceBooking.Communication", "src\Shared\BarberBooking.Communication\ServiceBooking.Communication.csproj", "{BC0197A6-FDF2-420F-97AA-7F9E31E02FEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
