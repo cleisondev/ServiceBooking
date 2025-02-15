@@ -1,4 +1,5 @@
-﻿using ServiceBooking.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ServiceBooking.Domain.Entities;
 using ServiceBooking.Domain.Repositories;
 using ServiceBooking.Domain.Repositories.User;
 using System;
@@ -15,6 +16,7 @@ namespace ServiceBooking.Infrastructure.DataAccess.Repositories
 
         public UserRepository(ServiceBookingDbContext db) => _db = db;
         public async Task Add(Usuario user) => await _db.Usuarios.AddAsync(user);
+        public async Task<bool> ExistActiveUserWithEmail(string email) => await _db.Usuarios.AnyAsync(user => user.Email.Equals(email));
 
     }
 }

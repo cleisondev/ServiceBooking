@@ -1,3 +1,4 @@
+using ServiceBooking.Application;
 using ServiceBooking.Infrastructure;
 using ServiceBooking.Infrastructure.Extensions;
 using ServiceBooking.Infrastructure.Migrations;
@@ -11,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddApplication(builder.Configuration);
+builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
