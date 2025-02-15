@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceBooking.Infrastructure.DataAccess.Repositories
+namespace ServiceBooking.Infrastructure.DataAccess
 {
     public class ServiceBookingDbContext : DbContext
     {

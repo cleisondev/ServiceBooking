@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Domain.Repositories
 {
-    internal interface IUserReadOnlyRepository
+    public interface IUserReadOnlyRepository
     {
     }
 }
