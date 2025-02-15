@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +9,22 @@ namespace ServiceBooking.Domain.Entities
 {
     public class Pagamento
     {
-        public int PagamentoId { get; set; }
-        public int AgendamentoId { get; set; }
-        public Agendamento Agendamento { get; set; } = null!;
+        public Guid PagamentoId { get; private set; } = Guid.NewGuid();
+        public Guid AgendamentoId { get; private set; }
+        public Agendamento Agendamento { get; private set; }
+        public decimal Valor { get; private set; }
+        public DateTime DataPagamento { get; private set; }
+        public StatusPagamento Status { get; private set; } = StatusPagamento.Pendente;
+        private Pagamento() { } // Para o EF
 
-        public decimal Valor { get; set; }
-        public DateTime DataPagamento { get; set; }
-        public StatusPagamento Status { get; set; } = StatusPagamento.Pendente;
+        public Pagamento(Guid agendamentoId, decimal valor, DateTime dataPagamento)
+        {
+            AgendamentoId = agendamentoId;
+            Valor = valor;
+            DataPagamento = dataPagamento;
+        }
     }
+
     public enum StatusPagamento
     {
         Pendente,

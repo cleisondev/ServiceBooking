@@ -9,22 +9,21 @@ namespace ServiceBooking.Domain.Entities
 {
     public class Agendamento
     {
-        public int AgendamentoId { get; private set; }
-        public int UsuarioId { get; private set; }
+        public Guid AgendamentoId { get; private set; } = Guid.NewGuid();
+        public Guid UsuarioId { get; private set; }
         public Usuario Usuario { get; private set; }
-        public int ServicoId { get; private set; }
+        public Guid ServicoId { get; private set; }
         public Servico Servico { get; private set; }
         public DateTime DataHora { get; private set; }
-        public StatusAgendamento Status { get; private set; }
+        public StatusAgendamento Status { get; private set; } = StatusAgendamento.Pendente;
 
-        public Agendamento(int clienteId, int servicoId, DateTime dataHora)
+        public Agendamento(Guid clienteId, Guid servicoId, DateTime dataHora)
         {
             if (dataHora < DateTime.Now) throw new ArgumentException("A data do agendamento não pode ser no passado");
 
             UsuarioId = clienteId;
             ServicoId = servicoId;
             DataHora = dataHora;
-            Status = StatusAgendamento.Pendente;
         }
 
         public void Confirmar()

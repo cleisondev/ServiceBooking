@@ -9,7 +9,7 @@ namespace ServiceBooking.Domain.Entities
 {
     public class Usuario
     {
-        public int UsuarioId { get; private set; }
+        public Guid UsuarioId { get; private set; } = Guid.NewGuid();
         public string Nome { get; private set; } = string.Empty;
         public string Email { get; private set; } = string.Empty;
         public string SenhaHash { get; private set; } = string.Empty;

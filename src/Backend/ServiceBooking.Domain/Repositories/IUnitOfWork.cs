@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Domain.Repositories
 {
-    internal interface IUserWriteOnlyRepository
+    public interface IUnitOfWork
     {
-        public Task Add(Entities.Usuario user);
+        public Task Commit();
     }
 }

@@ -9,15 +9,15 @@ namespace ServiceBooking.Domain.Entities
 {
     public class PrestadorServico
     {
-        public int PrestadorServicoId { get; private set; }
-        public int UsuarioId { get; private set; }
+        public Guid PrestadorServicoId { get; private set; } = Guid.NewGuid();
+        public Guid UsuarioId { get; private set; }
         public Usuario Usuario { get; private set; }
         public string Categoria { get; private set; }
         public string Descricao { get; private set; }
         public string Endereco { get; private set; }
         public List<Servico> Servicos { get; private set; } = new();
 
-        public PrestadorServico(int usuarioId, string categoria, string descricao, string endereco)
+        public PrestadorServico(Guid usuarioId, string categoria, string descricao, string endereco)
         {
             if (string.IsNullOrWhiteSpace(categoria)) throw new ArgumentException("Categoria inválida");
             if (string.IsNullOrWhiteSpace(endereco)) throw new ArgumentException("Endereço inválido");
