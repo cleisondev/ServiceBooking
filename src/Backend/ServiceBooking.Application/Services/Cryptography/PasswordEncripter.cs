@@ -12,9 +12,9 @@ namespace ServiceBooking.Application.Services.Cryptography
         public string Encrypt(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);
-            var hashBytes = SHA512.HashData(bytes);
+            var hashBytes = SHA256.HashData(bytes);
 
-            return StringBytes(hashBytes);
+            return Convert.ToBase64String(hashBytes);
 
         }
 

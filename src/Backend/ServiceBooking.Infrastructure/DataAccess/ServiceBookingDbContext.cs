@@ -24,6 +24,35 @@ namespace ServiceBooking.Infrastructure.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ServiceBookingDbContext).Assembly);
+            // Relacionamento Usuario -> Agendamento
+            modelBuilder.Entity<Agendamento>()
+                .HasOne(a => a.Usuario)
+                .WithMany()
+                .HasForeignKey(a => a.UsuarioId);
+
+            // Relacionamento Usuario -> PrestadorServico (Um usuário pode ser um prestador)
+            modelBuilder.Entity<PrestadorServico>()
+                .HasOne(p => p.Usuario)
+                .WithMany()
+                .HasForeignKey(p => p.UsuarioId);
+
+            // Relacionamento PrestadorServico -> Servico (Um prestador pode ter vários serviços)
+            modelBuilder.Entity<Servico>()
+                .HasOne(s => s.Prestador)
+                .WithMany(p => p.Servicos)
+                .HasForeignKey(s => s.PrestadorId);
+
+            // Relacionamento Agendamento -> Servico (Cada agendamento é para um serviço específico)
+            modelBuilder.Entity<Agendamento>()
+                .HasOne(a => a.Servico)
+                .WithMany()
+                .HasForeignKey(a => a.ServicoId);
+
+            // Relacionamento Agendamento -> Pagamento (Cada pagamento está associado a um agendamento)
+            modelBuilder.Entity<Pagamento>()
+                .HasOne(p => p.Agendamento)
+                .WithOne()
+                .HasForeignKey<Pagamento>(p => p.AgendamentoId);
         }
 
 

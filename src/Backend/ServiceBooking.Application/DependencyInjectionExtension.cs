@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceBooking.Application.Services.AutoMapper;
+using ServiceBooking.Application.Services.Cryptography;
+using ServiceBooking.Application.UseCases.User.Register;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,8 @@ namespace ServiceBooking.Application
 
         private static void AddUseCases(IServiceCollection services)
         {
-            //services.AddScoped<IRegisterUseCase, RegisterUserUseCase>();
+            services.AddScoped<IRegisterUseCase, RegisterUserUseCase>();
+            services.AddScoped<PasswordEncripter>();
         }
 
     }

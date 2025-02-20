@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceBooking.Application.UseCases
+namespace ServiceBooking.Application.UseCases.User.Register
 {
-    internal interface IRegisterUser
+    public interface IRegisterUseCase
     {
-        public Task<ResponseRegisteredUserJson> Registrar(RequestRegisterUserJson request);
+        public Task<ResponseRegisteredUserJson> RegistrarUsuario(RequestRegisterUserJson request);
     }
 }
