@@ -24,6 +24,23 @@ namespace ServiceBooking.Infrastructure.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ServiceBookingDbContext).Assembly);
+
+
+            modelBuilder.Entity<Usuario>()
+       .OwnsOne(u => u.Endereco, endereco =>
+       {
+           endereco.Property(e => e.Rua).HasColumnName("Endereco_Rua");
+           endereco.Property(e => e.Numero).HasColumnName("Endereco_Numero");
+           endereco.Property(e => e.Bairro).HasColumnName("Endereco_Bairro");
+           endereco.Property(e => e.Cidade).HasColumnName("Endereco_Cidade");
+           endereco.Property(e => e.Estado).HasColumnName("Endereco_Estado");
+           endereco.Property(e => e.Cep).HasColumnName("Endereco_Cep");
+       });
+
+            modelBuilder.Entity<Usuario>()
+    .Property(u => u.Tipo)
+    .HasConversion<int>();
+
             // Relacionamento Usuario -> Agendamento
             modelBuilder.Entity<Agendamento>()
                 .HasOne(a => a.Usuario)
@@ -39,8 +56,8 @@ namespace ServiceBooking.Infrastructure.DataAccess
             // Relacionamento PrestadorServico -> Servico (Um prestador pode ter vários serviços)
             modelBuilder.Entity<Servico>()
                 .HasOne(s => s.Prestador)
-                .WithMany(p => p.Servicos)
-                .HasForeignKey(s => s.PrestadorId);
+                .WithMany()
+                .HasForeignKey(s => s.PrestadorServicoId);
 
             // Relacionamento Agendamento -> Servico (Cada agendamento é para um serviço específico)
             modelBuilder.Entity<Agendamento>()

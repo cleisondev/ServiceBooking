@@ -1,5 +1,5 @@
-﻿using ServiceBooking.Communication.Request;
-using ServiceBooking.Communication.Response;
+﻿using ServiceBooking.Communication.Request.User;
+using ServiceBooking.Communication.Response.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Application.UseCases.User.Register
 {
-    public interface IRegisterUseCase
+    public interface IRegisterUserUseCase
     {
         public Task<ResponseRegisteredUserJson> RegistrarUsuario(RequestRegisterUserJson request);
     }

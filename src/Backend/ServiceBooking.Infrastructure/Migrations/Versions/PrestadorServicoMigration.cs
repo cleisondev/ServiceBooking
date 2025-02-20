@@ -12,7 +12,7 @@ namespace ServiceBooking.Infrastructure.Migrations.Versions
     {
         public override void Up()
         {
-            Create.Table("PrestadorServico")
+            Create.Table("Prestadores")
                 .WithColumn("PrestadorServicoId").AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
                 .WithColumn("UsuarioId").AsGuid().NotNullable().ForeignKey("Usuarios", "UsuarioId")
                 .WithColumn("Categoria").AsString(100).NotNullable()

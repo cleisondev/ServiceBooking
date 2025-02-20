@@ -1,4 +1,5 @@
 ﻿using ServiceBooking.Domain.Entities;
+using ServiceBooking.Domain.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,19 @@ namespace ServiceBooking.Domain.Entities
         public Guid PrestadorServicoId { get; private set; } = Guid.NewGuid();
         public Guid UsuarioId { get; private set; }
         public Usuario Usuario { get; private set; }
+        public string NomeEmpresa { get; set; }
         public string Categoria { get; private set; }
         public string Descricao { get; private set; }
-        public string Endereco { get; private set; }
-        public List<Servico> Servicos { get; private set; } = new();
+        public Endereco Endereco { get; private set; }
 
-        public PrestadorServico(Guid usuarioId, string categoria, string descricao, string endereco)
+        public PrestadorServico() { }
+        public PrestadorServico(Guid usuarioId, string categoria, string descricao, Endereco endereco, string nomeEmpresa)
         {
-            if (string.IsNullOrWhiteSpace(categoria)) throw new ArgumentException("Categoria inválida");
-            if (string.IsNullOrWhiteSpace(endereco)) throw new ArgumentException("Endereço inválido");
-
             UsuarioId = usuarioId;
             Categoria = categoria;
             Descricao = descricao;
             Endereco = endereco;
+            NomeEmpresa = nomeEmpresa;
         }
 
         public void AtualizarDescricao(string descricao)
@@ -33,15 +33,5 @@ namespace ServiceBooking.Domain.Entities
             if (string.IsNullOrWhiteSpace(descricao)) throw new ArgumentException("Descrição inválida");
             Descricao = descricao;
         }
-
-        public void AdicionarServico(Servico servico)
-        {
-            if (Servicos.Any(s => s.Nome == servico.Nome))
-                throw new InvalidOperationException("Este serviço já foi adicionado");
-
-            Servicos.Add(servico);
-        }
-
-        public bool OfereceServico(string nomeServico) => Servicos.Any(s => s.Nome == nomeServico);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using ServiceBooking.Communication.Request;
+using ServiceBooking.Communication.Request.PrestadorServico;
+using ServiceBooking.Communication.Request.User;
 using ServiceBooking.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,9 @@ namespace ServiceBooking.Application.Services.AutoMapper
         {
             CreateMap<RequestRegisterUserJson, Usuario>()
                 .ForMember(dest => dest.SenhaHash, opt => opt.Ignore());
+
+            CreateMap<RequestPrestadorServicoJson, PrestadorServico>()
+                .ForMember(dest => dest.Usuario, opt => opt.Ignore()); ;
         }
     }
 }

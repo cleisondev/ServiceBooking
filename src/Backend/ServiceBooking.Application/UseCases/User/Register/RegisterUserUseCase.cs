@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using ServiceBooking.Application.Services.Cryptography;
-using ServiceBooking.Communication.Request;
-using ServiceBooking.Communication.Response;
-using ServiceBooking.Domain.Repositories.User;
 using ServiceBooking.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,22 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceBooking.Exceptions;
 using ServiceBooking.Exceptions.ExceptionsBase;
+using ServiceBooking.Communication.Request.User;
+using ServiceBooking.Communication.Response.User;
+using ServiceBooking.Domain.Entities;
 
 namespace ServiceBooking.Application.UseCases.User.Register
 {
-    internal class RegisterUserUseCase : IRegisterUseCase
+    internal class RegisterUserUseCase : IRegisterUserUseCase
     {
         private readonly IMapper _map;
-        private readonly IUserWriteOnlyRepository _writeOnlyRepository;
-        private readonly IUserReadOnlyRepository _readOnlyRepository;
+        private readonly IRepository<Usuario> _repo;
         private readonly IUnitOfWork _unitOfWork;
         private readonly PasswordEncripter _passwordEncripter;
 
-        public RegisterUserUseCase(IMapper map, IUserWriteOnlyRepository writeOnlyRepository, IUserReadOnlyRepository readOnlyRepository, IUnitOfWork unitOfWork, PasswordEncripter passwordEncripter)
+        public RegisterUserUseCase(IMapper map, IRepository<Usuario> repo, IUnitOfWork unitOfWork, PasswordEncripter passwordEncripter)
         {
             _map = map;
-            _writeOnlyRepository = writeOnlyRepository;
-            _readOnlyRepository = readOnlyRepository;
+            _repo = repo;
             _unitOfWork = unitOfWork;
             _passwordEncripter = passwordEncripter;
         }
@@ -38,7 +36,7 @@ namespace ServiceBooking.Application.UseCases.User.Register
             var user = _map.Map<Domain.Entities.Usuario>(request);
             user.AtualizarSenha(_passwordEncripter.Encrypt(request.SenhaHash));
 
-            await _writeOnlyRepository.Add(user);
+            await _repo.Add(user);
             await _unitOfWork.Commit();
 
             return new ResponseRegisteredUserJson
@@ -52,7 +50,7 @@ namespace ServiceBooking.Application.UseCases.User.Register
             var validator = new RegisterUserValidator();
             var result = validator.Validate(request);
 
-            var emailExiste = await _readOnlyRepository.ExistActiveUserWithEmail(request.Email);
+            var emailExiste = await _repo.ExistActiveUserWithEmail(request.Email);
 
             if (emailExiste)
                 result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessageExceptions.EMAIL_ALREADY_REGISTERED));
