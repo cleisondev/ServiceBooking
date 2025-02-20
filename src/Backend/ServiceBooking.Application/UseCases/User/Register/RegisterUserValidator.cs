@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using ServiceBooking.Communication.Request;
+using ServiceBooking.Communication.Request.User;
 using ServiceBooking.Exceptions;
 
 namespace ServiceBooking.Application.UseCases.User.Register

@@ -1,4 +1,5 @@
 ﻿using ServiceBooking.Domain.Entities;
+using ServiceBooking.Domain.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,12 @@ namespace ServiceBooking.Domain.Entities
         public Usuario Usuario { get; private set; }
         public string Categoria { get; private set; }
         public string Descricao { get; private set; }
-        public string Endereco { get; private set; }
+        public Endereco Endereco { get; private set; }
         public List<Servico> Servicos { get; private set; } = new();
 
-        public PrestadorServico(Guid usuarioId, string categoria, string descricao, string endereco)
+        public PrestadorServico() { }
+        public PrestadorServico(Guid usuarioId, string categoria, string descricao, Endereco endereco)
         {
-            if (string.IsNullOrWhiteSpace(categoria)) throw new ArgumentException("Categoria inválida");
-            if (string.IsNullOrWhiteSpace(endereco)) throw new ArgumentException("Endereço inválido");
-
             UsuarioId = usuarioId;
             Categoria = categoria;
             Descricao = descricao;

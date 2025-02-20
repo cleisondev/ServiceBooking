@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using ServiceBooking.Application.Services.Cryptography;
-using ServiceBooking.Communication.Request;
-using ServiceBooking.Communication.Response;
 using ServiceBooking.Domain.Repositories.User;
 using ServiceBooking.Domain.Repositories;
 using System;
@@ -11,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceBooking.Exceptions;
 using ServiceBooking.Exceptions.ExceptionsBase;
+using ServiceBooking.Communication.Request.User;
+using ServiceBooking.Communication.Response.User;
 
 namespace ServiceBooking.Application.UseCases.User.Register
 {

@@ -1,5 +1,5 @@
-﻿using ServiceBooking.Communication.Request;
-using ServiceBooking.Communication.Response;
+﻿using ServiceBooking.Communication.Request.User;
+using ServiceBooking.Communication.Response.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

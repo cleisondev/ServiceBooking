@@ -1,4 +1,5 @@
 ﻿using ServiceBooking.Domain.Entities;
+using ServiceBooking.Domain.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,13 @@ namespace ServiceBooking.Domain.Entities
         public string Email { get; private set; } = string.Empty;
         public string SenhaHash { get; private set; } = string.Empty;
         public string Telefone { get; private set; } = string.Empty;
-        public DateTime DataCriacao { get; private set; } 
-        public TipoUsuario Tipo { get; private set; } // Pode dar problema na desserialização!
+        public DateTime DataCriacao { get; private set; }
+        public Endereco Endereco { get; private set; }
+
+        public TipoUsuario Tipo { get; private set; }
 
         public Usuario() { } // Construtor vazio para o framework conseguir mapear
-        public Usuario(string nome, string email, string senhaHash, string telefone, TipoUsuario tipo)
+        public Usuario(string nome, string email, string senhaHash, string telefone, Endereco endereco, TipoUsuario tipo)
         {
             if (string.IsNullOrWhiteSpace(nome)) throw new ArgumentException("Nome é obrigatório");
             if (!email.Contains("@")) throw new ArgumentException("Email inválido");
@@ -29,8 +32,9 @@ namespace ServiceBooking.Domain.Entities
             Email = email;
             SenhaHash = senhaHash;
             Telefone = telefone;
-            Tipo = tipo;
             DataCriacao = DateTime.Now; // Data de criação no momento da instância
+            Endereco = endereco;
+            Tipo = tipo;
         }
 
         public void AtualizarTelefone(string telefone)
@@ -49,9 +53,7 @@ namespace ServiceBooking.Domain.Entities
     }
     public enum TipoUsuario
     {
-        [JsonConverter(typeof(JsonStringEnumConverter))]
         Cliente = 0,
         Prestador = 1
     }
-
 }

@@ -4,12 +4,11 @@ using ServiceBooking.Application.UseCases.User.Register;
 using ServiceBooking.Communication.Request.User;
 using ServiceBooking.Communication.Response.User;
 
-
 namespace ServiceBooking.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class ServicoController : ControllerBase
     {
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
@@ -27,6 +26,5 @@ namespace ServiceBooking.API.Controllers
                 throw;
             }
         }
-
     }
 }

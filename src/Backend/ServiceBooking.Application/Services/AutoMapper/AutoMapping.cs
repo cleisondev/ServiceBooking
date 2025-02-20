@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ServiceBooking.Communication.Request;
+using ServiceBooking.Communication.Request.User;
 using ServiceBooking.Domain.Entities;
 using System;
 using System.Collections.Generic;
