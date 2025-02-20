@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Application.UseCases.User.Register
 {
-    public interface IRegisterUseCase
+    public interface IRegisterUserUseCase
     {
         public Task<ResponseRegisteredUserJson> RegistrarUsuario(RequestRegisterUserJson request);
     }

@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceBooking.Domain.Repositories;
-using ServiceBooking.Domain.Repositories.User;
 using ServiceBooking.Infrastructure.DataAccess;
 using ServiceBooking.Infrastructure.DataAccess.Repositories;
 using System;
@@ -38,8 +37,7 @@ namespace ServiceBooking.Infrastructure
         private static void AddRepositories(IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
-            services.AddScoped<IUserReadOnlyRepository, UserRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
 
         private static void AddFluentMigrator(IServiceCollection services, IConfiguration config)

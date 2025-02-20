@@ -13,7 +13,7 @@ namespace ServiceBooking.API.Controllers
     {
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
-        public async Task<IActionResult> RegisterUser([FromServices] IRegisterUseCase useCase, [FromBody] RequestRegisterUserJson request)
+        public async Task<IActionResult> RegisterUser([FromServices] IRegisterUserUseCase useCase, [FromBody] RequestRegisterUserJson request)
         {
             try
             {
