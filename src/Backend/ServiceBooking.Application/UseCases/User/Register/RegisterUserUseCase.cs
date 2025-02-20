@@ -9,10 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceBooking.Exceptions;
+using ServiceBooking.Exceptions.ExceptionsBase;
 
-namespace ServiceBooking.Application.UseCases
+namespace ServiceBooking.Application.UseCases.User.Register
 {
-    internal class RegisterUser : IRegisterUser
+    internal class RegisterUserUseCase : IRegisterUseCase
     {
         private readonly IMapper _map;
         private readonly IUserWriteOnlyRepository _writeOnlyRepository;
@@ -20,7 +22,7 @@ namespace ServiceBooking.Application.UseCases
         private readonly IUnitOfWork _unitOfWork;
         private readonly PasswordEncripter _passwordEncripter;
 
-        public RegisterUser(IMapper map, IUserWriteOnlyRepository writeOnlyRepository, IUserReadOnlyRepository readOnlyRepository, IUnitOfWork unitOfWork, PasswordEncripter passwordEncripter)
+        public RegisterUserUseCase(IMapper map, IUserWriteOnlyRepository writeOnlyRepository, IUserReadOnlyRepository readOnlyRepository, IUnitOfWork unitOfWork, PasswordEncripter passwordEncripter)
         {
             _map = map;
             _writeOnlyRepository = writeOnlyRepository;
@@ -29,9 +31,20 @@ namespace ServiceBooking.Application.UseCases
             _passwordEncripter = passwordEncripter;
         }
 
-        public Task<ResponseRegisteredUserJson> Registrar(RequestRegisterUserJson request)
+        public async Task<ResponseRegisteredUserJson> RegistrarUsuario(RequestRegisterUserJson request)
         {
-            throw new NotImplementedException();
+            await Validate(request);
+
+            var user = _map.Map<Domain.Entities.Usuario>(request);
+            user.AtualizarSenha(_passwordEncripter.Encrypt(request.SenhaHash));
+
+            await _writeOnlyRepository.Add(user);
+            await _unitOfWork.Commit();
+
+            return new ResponseRegisteredUserJson
+            {
+                Name = request.Nome
+            };
         }
 
         private async Task Validate(RequestRegisterUserJson request)

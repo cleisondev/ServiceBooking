@@ -16,7 +16,7 @@ namespace ServiceBooking.Domain.Entities
         public Servico Servico { get; private set; }
         public DateTime DataHora { get; private set; }
         public StatusAgendamento Status { get; private set; } = StatusAgendamento.Pendente;
-
+        private Agendamento() { }
         public Agendamento(Guid clienteId, Guid servicoId, DateTime dataHora)
         {
             if (dataHora < DateTime.Now) throw new ArgumentException("A data do agendamento não pode ser no passado");

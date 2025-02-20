@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ServiceBooking.Domain.Entities
@@ -14,8 +15,10 @@ namespace ServiceBooking.Domain.Entities
         public string Email { get; private set; } = string.Empty;
         public string SenhaHash { get; private set; } = string.Empty;
         public string Telefone { get; private set; } = string.Empty;
-        public TipoUsuario Tipo { get; private set; } // Cliente ou Prestador
+        public DateTime DataCriacao { get; private set; } 
+        public TipoUsuario Tipo { get; private set; } // Pode dar problema na desserialização!
 
+        public Usuario() { } // Construtor vazio para o framework conseguir mapear
         public Usuario(string nome, string email, string senhaHash, string telefone, TipoUsuario tipo)
         {
             if (string.IsNullOrWhiteSpace(nome)) throw new ArgumentException("Nome é obrigatório");
@@ -27,6 +30,7 @@ namespace ServiceBooking.Domain.Entities
             SenhaHash = senhaHash;
             Telefone = telefone;
             Tipo = tipo;
+            DataCriacao = DateTime.Now; // Data de criação no momento da instância
         }
 
         public void AtualizarTelefone(string telefone)
@@ -45,8 +49,9 @@ namespace ServiceBooking.Domain.Entities
     }
     public enum TipoUsuario
     {
-        Cliente,
-        Prestador
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        Cliente = 0,
+        Prestador = 1
     }
 
 }
