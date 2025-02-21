@@ -9,11 +9,11 @@ namespace ServiceBooking.Communication.Request.Servico
 {
     public class RequestRegisterServiceJson
     {
-        public Guid ServicoId { get; private set; } = Guid.NewGuid();
-        public Guid PrestadorId { get; private set; }
+        public Guid ServicoId { get;  set; } = Guid.NewGuid();
+        public Guid PrestadorId { get;  set; }
         //public PrestadorServico Prestador { get; private set; }
-        public string Nome { get; private set; }
-        public decimal Preco { get; private set; }
-        public TimeSpan Duracao { get; private set; }
+        public string Nome { get;  set; }
+        public decimal Preco { get;  set; }
+        public TimeSpan Duracao { get;  set; }
     }
 }

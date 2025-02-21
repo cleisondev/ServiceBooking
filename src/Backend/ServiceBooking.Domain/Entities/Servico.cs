@@ -9,7 +9,7 @@ namespace ServiceBooking.Domain.Entities
     public class Servico
     {
         public Guid ServicoId { get; private set; } = Guid.NewGuid();
-        public Guid PrestadorServicoId { get; private set; }
+        public Guid PrestadorId { get; private set; }
         public PrestadorServico Prestador { get; private set; }
         public string Nome { get; private set; }
         public decimal Preco { get; private set; }
@@ -22,7 +22,7 @@ namespace ServiceBooking.Domain.Entities
             if (preco <= 0) throw new ArgumentException("Preço deve ser maior que zero");
             if (duracao.TotalMinutes < 1) throw new ArgumentException("Duração inválida");
 
-            PrestadorServicoId = prestadorId;
+            PrestadorId = prestadorId;
             Nome = nome;
             Preco = preco;
             Duracao = duracao;
