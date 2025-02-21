@@ -57,7 +57,7 @@ namespace ServiceBooking.Infrastructure.DataAccess
             modelBuilder.Entity<Servico>()
                 .HasOne(s => s.Prestador)
                 .WithMany()
-                .HasForeignKey(s => s.PrestadorServicoId);
+                .HasForeignKey(s => s.PrestadorId);
 
             // Relacionamento Agendamento -> Servico (Cada agendamento é para um serviço específico)
             modelBuilder.Entity<Agendamento>()

@@ -4,8 +4,10 @@ using ServiceBooking.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static Dapper.SqlMapper;
 
 namespace ServiceBooking.Infrastructure.DataAccess.Repositories
 {
@@ -15,15 +17,20 @@ namespace ServiceBooking.Infrastructure.DataAccess.Repositories
 
         public Repository(ServiceBookingDbContext db) => _db = db;
         public async Task Add(T entity) => await _db.Set<T>().AddAsync(entity);
+        public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _db.Set<T>().FirstOrDefaultAsync(predicate);
+        }
         public async Task<bool> ExistActiveUserWithEmail(string email)
         {
             if (typeof(T) == typeof(Usuario))
             {
                 return await _db.Set<Usuario>().AnyAsync(user => user.Email.Equals(email));
             }
-            // Caso a lógica precise de algo diferente, você pode tratar aqui.
+
             return false;
         }
 
+        
     }
 }

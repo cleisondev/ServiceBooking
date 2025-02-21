@@ -14,7 +14,7 @@ using ServiceBooking.Domain.Entities;
 
 namespace ServiceBooking.Application.UseCases.PrestadorServicos.Register
 {
-    internal class RegisterPrestadorServicoUseCase : IRegisterPrestadorServicoUseCase
+    public class RegisterPrestadorServicoUseCase : IRegisterPrestadorServicoUseCase
     {
         private readonly IMapper _map;
         private readonly IRepository<PrestadorServico> _repo;
