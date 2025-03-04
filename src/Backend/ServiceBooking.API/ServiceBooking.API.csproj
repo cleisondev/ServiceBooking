@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Shared\ServiceBooking.Communication\ServiceBooking.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\ServiceBooking.Exceptions\ServiceBooking.Exceptions.csproj" />
     <ProjectReference Include="..\ServiceBooking.Application\ServiceBooking.Application.csproj" />
+    <ProjectReference Include="..\ServiceBooking.Domain\ServiceBooking.Domain.csproj" />
     <ProjectReference Include="..\ServiceBooking.Infrastructure\ServiceBooking.Infrastructure.csproj" />
   </ItemGroup>
 

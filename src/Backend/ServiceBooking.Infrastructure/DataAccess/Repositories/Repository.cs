@@ -17,6 +17,10 @@ namespace ServiceBooking.Infrastructure.DataAccess.Repositories
 
         public Repository(ServiceBookingDbContext db) => _db = db;
         public async Task Add(T entity) => await _db.Set<T>().AddAsync(entity);
+
+
+        public async Task<List<T?>> GetAllUsers() => await _db.Set<T>().ToListAsync();
+
         public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate)
         {
             return await _db.Set<T>().FirstOrDefaultAsync(predicate);
@@ -31,6 +35,12 @@ namespace ServiceBooking.Infrastructure.DataAccess.Repositories
             return false;
         }
 
-        
+        public async Task<Usuario?> GetByEmailAndPassword(string email, string password)
+        {
+            return await _db.Set<Usuario>().AsNoTracking()
+                .FirstOrDefaultAsync(user => user.Email.Equals(email) && user.SenhaHash.Equals(password));
+
+        }
+
     }
 }
