@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BarberBooking.Domain\ServiceBooking.Domain.csproj" />
     <ProjectReference Include="..\ServiceBooking.Domain\ServiceBooking.Domain.csproj" />
   </ItemGroup>
 

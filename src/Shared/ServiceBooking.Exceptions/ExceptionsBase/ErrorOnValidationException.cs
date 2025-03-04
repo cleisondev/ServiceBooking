@@ -10,7 +10,9 @@ namespace ServiceBooking.Exceptions.ExceptionsBase
     {
         public IList<string> ErrorMessages { get; set; }
 
-        public ErrorOnValidationException(IList<string> errorMessagess)
+
+
+        public ErrorOnValidationException(IList<string> errorMessagess) : base(string.Empty)
         {
             ErrorMessages = errorMessagess;
 

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Exceptions.ExceptionsBase
 {
-    public class ServiceBookingException: SystemException
+    public class ServiceBookingException : SystemException
     {
+        public ServiceBookingException(string? message) : base(message)
+        {
+        }
     }
 }

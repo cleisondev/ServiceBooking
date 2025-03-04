@@ -61,6 +61,15 @@ namespace ServiceBooking.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Login ou/e senha inválidos.
+        /// </summary>
+        public static string ACCESS_INVALID {
+            get {
+                return ResourceManager.GetString("ACCESS_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail já registrado.
         /// </summary>
         public static string EMAIL_ALREADY_REGISTERED {

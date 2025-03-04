@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceBooking.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -12,5 +13,8 @@ namespace ServiceBooking.Domain.Repositories
         Task Add(T entity);
         Task<T?> GetAsync(Expression<Func<T, bool>> predicate);
         Task<bool> ExistActiveUserWithEmail(string email);
+
+        Task<Usuario?> GetByEmailAndPassword(string email, string password);
+        Task<List<T?>> GetAllUsers();
     }
 }

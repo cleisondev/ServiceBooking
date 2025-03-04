@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ServiceBooking.Application.UseCases.User.GetUser;
 using ServiceBooking.Application.UseCases.User.Register;
 using ServiceBooking.Communication.Request.User;
 using ServiceBooking.Communication.Response.User;
+using ServiceBooking.Domain.Entities;
+using ServiceBooking.Domain.Repositories;
 
 
 namespace ServiceBooking.API.Controllers
@@ -11,6 +14,23 @@ namespace ServiceBooking.API.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+
+        [HttpGet]
+        public async Task<IActionResult> RegisterUser([FromServices] IGetUsersUseCase useCase)
+        {
+            try
+            {
+                var result = await useCase.GetAllUsers();
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
         public async Task<IActionResult> RegisterUser([FromServices] IRegisterUserUseCase useCase, [FromBody] RequestRegisterUserJson request)
@@ -27,6 +47,8 @@ namespace ServiceBooking.API.Controllers
                 throw;
             }
         }
+
+
 
     }
 }
