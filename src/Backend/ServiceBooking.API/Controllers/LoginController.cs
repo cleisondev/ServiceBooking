@@ -21,6 +21,7 @@ namespace ServiceBooking.API.Controllers
         {
             try
             {
+
                 var result = await useCase.Login(request);
 
                 return Ok("Login efetuado com sucesso");

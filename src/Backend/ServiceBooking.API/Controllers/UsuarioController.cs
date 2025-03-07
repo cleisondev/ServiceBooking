@@ -22,7 +22,7 @@ namespace ServiceBooking.API.Controllers
             {
                 var result = await useCase.GetAllUsers();
 
-                return Ok();
+                return Ok(result);
             }
             catch (Exception)
             {
