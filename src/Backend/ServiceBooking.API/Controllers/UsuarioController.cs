@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceBooking.Application.UseCases.User.GetUser;
 using ServiceBooking.Application.UseCases.User.Register;
@@ -10,11 +11,13 @@ using ServiceBooking.Domain.Repositories;
 
 namespace ServiceBooking.API.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
 
+    
         [HttpGet]
         public async Task<IActionResult> RegisterUser([FromServices] IGetUsersUseCase useCase)
         {

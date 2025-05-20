@@ -22,9 +22,12 @@ namespace ServiceBooking.Application.UseCases.Login.DoLogin
         private readonly PasswordEncripter _passwordEncripter;
         private readonly IJwtService _jwtService;
 
-        public DoLoginUseCase(IJwtService jwtService)
+        public DoLoginUseCase(IJwtService jwtService, PasswordEncripter passwordEncripter, IRepository<Usuario> repo)
         {
             _jwtService = jwtService;
+            _passwordEncripter = passwordEncripter;
+            _repo = repo;
+
         }
 
         public async Task<ResponseRegisteredUserJson> Login(RequestLoginJson request)
