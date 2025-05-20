@@ -17,13 +17,14 @@ namespace ServiceBooking.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status200OK)]
-        public async Task<IActionResult> RegisterUser([FromServices] DoLoginUseCase useCase, [FromBody] RequestLoginJson request)
+        public async Task<IActionResult> RegisterUser([FromServices] IDoLoginUseCase useCase, [FromBody] RequestLoginJson request)
         {
             try
             {
+
                 var result = await useCase.Login(request);
 
-                return Ok("Login efetuado com sucesso");
+                return Ok(result);
             }
             catch (ErrorOnValidationException ex)
             {

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using ServiceBooking.Application.Services.AutoMapper;
 using ServiceBooking.Application.Services.Cryptography;
+using ServiceBooking.Application.UseCases.Login.DoLogin;
 using ServiceBooking.Application.UseCases.PrestadorServicos.Register;
 using ServiceBooking.Application.UseCases.Servicos.Register;
 using ServiceBooking.Application.UseCases.User.GetUser;
@@ -33,6 +34,7 @@ namespace ServiceBooking.Application
 
         private static void AddUseCases(IServiceCollection services)
         {
+            services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
             services.AddScoped<IRegisterPrestadorServicoUseCase, RegisterPrestadorServicoUseCase>();
             services.AddScoped<IRegisterServicosUseCase, RegisterServicoUseCase>();

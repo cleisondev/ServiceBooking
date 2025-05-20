@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServiceBooking.Application.UseCases.Login.DoLogin
 {
-    internal interface IDoLoginUseCase
+    public interface IDoLoginUseCase
     {
         Task<ResponseRegisteredUserJson> Login(RequestLoginJson request);
     }
